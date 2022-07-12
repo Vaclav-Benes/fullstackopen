@@ -1,0 +1,23 @@
+title SPA Load
+
+Browser->Server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/spa
+
+Server-->Browser: HTML code (main.html)
+
+Browser->Server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.css
+
+Server-->Browser: CSS file (main.css)
+
+Browser->Server: https://studies.cs.helsinki.fi/exampleapp/spa.js
+
+Server-->Browser: JS file (spa.js)
+
+note over Browser: Starts executing JS code, requests data
+
+Browser->Server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/data.json
+
+Server-->Browser: JSON file (data.json)
+
+note left of Server: Content of file:\n[{content: "data from input field", date: "2022-07-12"}]
+
+note over Browser: Receives file, executes callback.\nChecks server response, parses JSON data \nand pushes them to browser via DOM-API.

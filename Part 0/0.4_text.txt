@@ -1,0 +1,30 @@
+title Posting a note
+
+User->Browser: *Filing input and clicking save button*
+
+note right of Browser: Payload = note: "data from input field"
+Browser->Server: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note
+
+Server-->Browser: Status code: 302 => New GET to /notes
+
+Browser->Server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/notes
+
+Server-->Browser: HTML code (main.html)
+
+Browser->Server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.css
+
+Server-->Browser: CSS file (main.css)
+
+Browser->Server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.js
+
+Server-->Browser: JS file (main.js)
+
+note over Browser: Starts executing JS code
+
+Browser->Server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/data.json
+
+Server-->Browser: JSON file (data.json)
+
+note left of Server: Content of file:\n[{content: "data from input field", date: "2022-07-12"}]
+
+note over Browser: Receives file, executes callback.\n Checks server response, parses JSON data \nand pushes them to browser via DOM-API.

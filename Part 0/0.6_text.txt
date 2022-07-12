@@ -1,0 +1,11 @@
+title SPA new note
+
+User->Browser: *Fills note and clicks save*
+
+note over Browser: Fetch data from form, create JSON string, \npush string to notes array,\nredraw notes on page,\npost note to server
+
+Browser->Server: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa
+
+note over Browser: content-type: application/json;\npayload: {"content": "New note, yeah!", "date": "2022-07-12T19:40:33.236Z"}
+
+Server-->Browser: Status code: 201 (Created)
