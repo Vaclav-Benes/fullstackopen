@@ -5,10 +5,17 @@ const Notification = () => {
   const style = {
     border: 'solid',
     padding: 10,
-    borderWidth: 1
+    borderWidth: 1,
+    marginBottom: 20,
+    color: 'blue'
   }
+
+  const hide = {
+    display: 'none'
+  }
+
   return (
-    <div style={style}>
+    <div style={notification ? style : hide} id="notif">
       {notification}
     </div>
   )
