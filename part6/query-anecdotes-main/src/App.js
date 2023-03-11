@@ -4,12 +4,11 @@ import { getAnecdotes, updateAne } from './requests'
 import AnecdoteForm from './components/AnecdoteForm'
 import Notification from './components/Notification'
 
-import { useContext } from "react"
-import NotificationContext, { setNotification } from './NotificationContext'
+import { useNotificationDispatch } from './NotificationContext'
 
 const App = () => {
 
-  const [notification, dispatch] = useContext(NotificationContext)
+  const dispatch = useNotificationDispatch()
 
   const queryClient = useQueryClient()
 
@@ -24,7 +23,11 @@ const App = () => {
       ...anecdote,
       votes: anecdote.votes + 1
     })
-    dispatch(setNotification("You voted for: " + anecdote.content, 5))
+
+    dispatch({type:'NEW_NOTIFICATION', payload: 'You liked: "'+ anecdote.content + '"'})
+    setTimeout(()=>{
+      dispatch({type:'HIDE_NOTIFICATION', payload: ''})
+    },5000)
   }
 
   const result = useQuery('anecdotes', getAnecdotes)

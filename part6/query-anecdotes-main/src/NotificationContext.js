@@ -1,29 +1,13 @@
-import { createContext, useReducer } from 'react'
+import { createContext, useReducer, useContext } from 'react'
 
-const notificationReducer = (state, action) => {
+export const notificationReducer = (state, action) => {
     switch (action.type) {
         case 'NEW_NOTIFICATION':
-            return state
-        case 'HIDE_NOTIFICATION':
-            return state
+            return action.payload
+            case 'HIDE_NOTIFICATION':
+            return action.payload
         default:
             return state
-    }
-}
-
-export const setNotification = (notification, displayTime) => {
-    return async dispatch => {
-        dispatch({
-            type: 'NEW_NOTIFICATION',
-            notification,
-        })
-
-        setTimeout(() => {
-            dispatch({
-                type: 'HIDE_NOTIFICATION',
-                notification: null
-            })
-        }, displayTime * 1000)
     }
 }
 
@@ -38,5 +22,15 @@ export const NotificationContextProvider = (props) => {
         </NotificationContext.Provider>
     )
 }
+
+export const useNotificationValue = () => {
+    const notificationAndDispatch = useContext(NotificationContext)
+    return notificationAndDispatch[0]
+  }
+  
+  export const useNotificationDispatch = () => {
+    const notificationAndDispatch = useContext(NotificationContext)
+    return notificationAndDispatch[1]
+  }
 
 export default NotificationContext
